@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vegetable_apps/presentation/item_detail/item_detail_page.dart';
 
-class MenuList extends StatefulWidget {
-  const MenuList({Key? key}) : super(key: key);
+class MenuListPage extends StatefulWidget {
+  const MenuListPage({Key? key}) : super(key: key);
 
   @override
-  State<MenuList> createState() => _MenuListState();
+  State<MenuListPage> createState() => _MenuListPageState();
 }
 
-class _MenuListState extends State<MenuList> {
+class _MenuListPageState extends State<MenuListPage> {
   List<String> listGambar = [
     "assets/images/food.jpg",
     "assets/images/food1.jpg",
@@ -41,15 +42,39 @@ class _MenuListState extends State<MenuList> {
             crossAxisSpacing: 10, // Jarak kiri kanan
             mainAxisSpacing: 10, // Jarak Atas bawah
           ),
-          itemBuilder: (context, index) => Container(
-            height: 100,
-            color: Colors.red,
-            child: Image.asset(
-              listGambar[index],
-              fit: BoxFit.cover,
-            ),
+          itemBuilder: (context, index) => InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ItemDetailPage(gambar: listGambar[index]),
+                ),
+              );
+            },
+            child: ListImageItem(listGambar: listGambar[index]),
           ),
         )),
+      ),
+    );
+  }
+}
+
+class ListImageItem extends StatelessWidget {
+  const ListImageItem({
+    Key? key,
+    required this.listGambar,
+  }) : super(key: key);
+
+  final String listGambar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      color: Colors.red,
+      child: Image.asset(
+        listGambar,
+        fit: BoxFit.cover,
       ),
     );
   }
