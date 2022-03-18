@@ -8,6 +8,25 @@ class MenuList extends StatefulWidget {
 }
 
 class _MenuListState extends State<MenuList> {
+  List<String> listGambar = [
+    "assets/images/food.jpg",
+    "assets/images/food1.jpg",
+    "assets/images/food2.jpg",
+    "assets/images/food3.jpg",
+    "assets/images/food.jpg",
+    "assets/images/food1.jpg",
+    "assets/images/food2.jpg",
+    "assets/images/food3.jpg",
+    "assets/images/food.jpg",
+    "assets/images/food1.jpg",
+    "assets/images/food2.jpg",
+    "assets/images/food3.jpg",
+    "assets/images/food.jpg",
+    "assets/images/food1.jpg",
+    "assets/images/food2.jpg",
+    "assets/images/food3.jpg",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,13 +34,13 @@ class _MenuListState extends State<MenuList> {
         // ignore: avoid_unnecessary_containers
         child: Container(
             child: ListView.builder(
-          itemCount: 5,
+          itemCount: listGambar.length,
           itemBuilder: (context, index) => Container(
             height: 100,
             color: Colors.red,
             margin: const EdgeInsets.only(top: 10),
             child: Image.asset(
-              "assets/images/food.jpg",
+              listGambar[index],
               fit: BoxFit.cover,
             ),
           ),
