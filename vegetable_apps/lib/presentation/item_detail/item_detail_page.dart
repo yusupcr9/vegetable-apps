@@ -11,12 +11,14 @@ class ItemDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: 300,
-        width: double.infinity,
-        child: Image.asset(
-          gambar,
-          fit: BoxFit.cover,
+      body: SafeArea(
+        child: Container(
+          height: 300,
+          width: double.infinity,
+          child: Image.asset(
+            gambar,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
