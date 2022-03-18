@@ -33,12 +33,17 @@ class _MenuListState extends State<MenuList> {
       body: SafeArea(
         // ignore: avoid_unnecessary_containers
         child: Container(
-            child: ListView.builder(
+            child: GridView.builder(
           itemCount: listGambar.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4, // Jumlah Kolom
+            childAspectRatio: 1, // Rasio Panjang dan Lebar
+            crossAxisSpacing: 10, // Jarak kiri kanan
+            mainAxisSpacing: 10, // Jarak Atas bawah
+          ),
           itemBuilder: (context, index) => Container(
             height: 100,
             color: Colors.red,
-            margin: const EdgeInsets.only(top: 10),
             child: Image.asset(
               listGambar[index],
               fit: BoxFit.cover,
