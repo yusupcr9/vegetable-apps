@@ -14,18 +14,18 @@ class _MenuListState extends State<MenuList> {
       body: SafeArea(
         // ignore: avoid_unnecessary_containers
         child: Container(
-          child: ListView(
-            children: [
-              Container(
-                height: 200,
-                child: Image.asset(
-                  "assets/images/food.jpg",
-                  fit: BoxFit.cover,
-                ),
-              )
-            ],
+            child: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (context, index) => Container(
+            height: 100,
+            color: Colors.red,
+            margin: const EdgeInsets.only(top: 10),
+            child: Image.asset(
+              "assets/images/food.jpg",
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
+        )),
       ),
     );
   }
