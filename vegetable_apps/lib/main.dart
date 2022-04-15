@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vegetable_apps/presentation/menu_list/menu_list_page.dart';
+import 'package:vegetable_apps/presentation/sign_in/sign_in_page.dart';
 
 void main() {
   runApp(const AppWidget());
@@ -11,7 +12,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: MenuListPage(),
+      home: SignInPage(),
     );
   }
 }
