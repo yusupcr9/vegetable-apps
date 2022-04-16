@@ -12,6 +12,8 @@ class _SignInPageState extends State<SignInPage> {
   bool? _obscureText;
   IconData? _icon;
   final Dio _dio = Dio();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -35,6 +37,7 @@ class _SignInPageState extends State<SignInPage> {
             ),
             SizedBox(height: 40),
             TextFormField(
+              controller: _emailController,
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   Icons.person_outline_rounded,
@@ -45,6 +48,7 @@ class _SignInPageState extends State<SignInPage> {
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: _passwordController,
               obscureText: _obscureText!,
               decoration: InputDecoration(
                   prefixIcon: Icon(
@@ -88,9 +92,38 @@ class _SignInPageState extends State<SignInPage> {
               height: 50,
               child: TextButton(
                   onPressed: () async {
-                    Response _response =
-                        await _dio.get('https://reqres.in/api/users?page=2');
-                    print(_response.data["total_pages"]);
+                    print("Wakawwaw");
+                    print(_emailController.text);
+                    print(_passwordController.text);
+                    dynamic _data = {
+                      "email": _emailController.text,
+                      "password": _passwordController.text
+                    };
+                    try {
+                      Response _response = await _dio
+                          .post('https://reqres.in/api/login', data: _data);
+                      print(_response.toString());
+                    } on DioError catch (e) {
+                      print(e.response!.data['error']);
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Error"),
+                              content: Text(e.response!.data['error']),
+                              actions: [
+                                TextButton(
+                                  child: Text("OK"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                )
+                              ],
+                            );
+                          });
+                    } catch (e) {
+                      print(e);
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
