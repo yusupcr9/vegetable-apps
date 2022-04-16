@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
@@ -10,6 +11,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   bool? _obscureText;
   IconData? _icon;
+  final Dio _dio = Dio();
 
   @override
   void initState() {
@@ -85,7 +87,11 @@ class _SignInPageState extends State<SignInPage> {
               width: 150,
               height: 50,
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    Response _response =
+                        await _dio.get('https://reqres.in/api/users?page=2');
+                    print(_response.data["total_pages"]);
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                       Colors.black87,
